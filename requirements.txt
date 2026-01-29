@@ -1,0 +1,13 @@
+torch>=2.0.0
+torchvision
+timm==0.9.2
+pytorch-grad-cam
+opencv-python
+numpy
+pillow
+tqdm
+scikit-learn
+seaborn
+matplotlib
+pandas
+xgboost

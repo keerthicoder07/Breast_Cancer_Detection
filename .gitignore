@@ -1,0 +1,27 @@
+# Ignore Datasets
+final_dataset_10k_augmented/
+raw_data/
+test_images/
+
+# Ignore Virtual Environments
+venv/
+.env
+
+# Ignore Previous Outputs
+swin/output_swin_convnext/
+swin/output_swin_convnext_v2/
+swin/output_swin_v3/
+swin/output_v5_attention/
+swin/output_v5_pro_amp/
+swin/v5_visual_results/
+vit+efficient
+check_count.py
+dataset.py
+
+
+# Ignore Archive files
+*.zip
+*.rar
+
+# Keep only V6 Output
+!swin/output_v6_clinical/
