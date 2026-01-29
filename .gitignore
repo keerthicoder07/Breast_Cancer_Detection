@@ -23,4 +23,4 @@ dataset.py
 *.rar
 
 # Keep only V6 Output
-swin/output_v6_clinical/
+!swin/output_v6_clinical/
