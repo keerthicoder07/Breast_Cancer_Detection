@@ -17,7 +17,7 @@ swin/v5_visual_results/
 vit+efficient
 check_count.py
 dataset.py
-swin/output_v6_clinical/swin_v6_clinical_final.pth
+swin/output_v6_clinical
 # Ignore Archive files
 *.zip
 *.rar
