@@ -17,10 +17,10 @@ swin/v5_visual_results/
 vit+efficient
 check_count.py
 dataset.py
-swin/output_v6_clinical
+
 # Ignore Archive files
 *.zip
 *.rar
 
 # Keep only V6 Output
-!swin/output_v6_clinical/
+swin/output_v6_clinical/
