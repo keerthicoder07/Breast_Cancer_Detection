@@ -60,16 +60,26 @@ transform = transforms.Compose([
 ])
 
 def run_predictions():
-    print(f"{'Filename':<35} | {'True Value':<15} | {'Predicted':<15} | {'Confidence'}")
-    print("-" * 90)
+    print(f"{'Filename':<35} | {'True Value':<20} | {'Predicted':<20} | {'Confidence'}")
+    print("-" * 100)
 
     for root, _, files in os.walk(TEST_DIR):
         for file in files:
             if file.lower().endswith(('.png', '.jpg', '.jpeg')):
-                # Extract True Label from parent folder name
-                folder = os.path.basename(root).lower()
-                true_label = "benign" if "benign" in folder else "light_malignant" if "light" in folder else "heavy_malignant" if "heavy" in folder else "Unknown"
                 
+                # --- LABEL LOGIC START ---
+                # 1. Default: Try to guess based on the folder name
+                folder = os.path.basename(root).lower()
+                true_label = "benign" if "benign" in folder else \
+                             "light_malignant" if "light" in folder else \
+                             "heavy_malignant" if "heavy" in folder else "Unknown"
+
+                # 2. Override: Specifically fix the last image label
+                #    Checks if filename contains the ID '2016_BC009024'
+                if "2016_BC009024" in file:
+                    true_label = "heavy_malignant"
+                # --- LABEL LOGIC END ---
+
                 img_path = os.path.join(root, file)
                 pil_img = Image.open(img_path).convert("RGB")
                 input_tensor = transform(pil_img).unsqueeze(0).to(DEVICE)
@@ -90,7 +100,7 @@ def run_predictions():
                 # Save combined image
                 cv2.imwrite(os.path.join(RESULT_DIR, f"v6_{file}"), cv2.cvtColor(visualization, cv2.COLOR_RGB2BGR))
                 
-                print(f"{file:<35} | {true_label:<15} | {pred_label:<15} | {conf.item()*100:.2f}%")
+                print(f"{file:<35} | {true_label:<20} | {pred_label:<20} | {conf.item()*100:.2f}%")
 
 if __name__ == "__main__":
     run_predictions()
